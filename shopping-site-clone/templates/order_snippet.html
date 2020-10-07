@@ -1,0 +1,15 @@
+<div class="col-lg-4 col-md-6">
+    {% if DISPLAY_COUPON_FORM %}
+    <h6><b>Discount Codes</b></h6>
+    <br>
+    <div class="input-group mb-3 checkout__input">
+        <form action="{% url 'core:add-coupon' %}" method='POST'>
+            {% csrf_token %}
+            {{ couponform.code }}
+            <div class="input-group-append">
+                <button type="submit"class="site-btn">Apply</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                    {% comment %} here {% endcomment %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for order_item in object.items.all %}
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img src="{% static 'img/shopping-cart/cart-1.jpg' %}" alt="">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>{{ order_item.item.title }}</h6>
+                                            <h5>${{ order_item.item.price }}</h5>
+                                        </div>
+                                    </td>
+
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                                <a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}">
+                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                                    </svg>
+                                                </a>
+                                                {{ order_item.quantity }}
+                                                <a href="{% url 'core:add-to-cart' order_item.item.slug %}">
+                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                    </svg>
+                                                </a>
+                                        </div>
+                                    </td>
+
+                                    <td class="cart__price">
+                                    {% if order_item.item.discount_price %}
+                                        ${{ order_item.get_total_discount_item_price }}
+                                        <span class="badge badge-success">Saving ${{ order_item.get_amount_saved }}</span>
+                                    {% else %}
+                                        ${{ order_item.get_total_item_price }}
+                                    {% endif %}
+                                    </td>
+                                    <td class="cart__close">
+                                    <a href="{% url 'core:remove-from-cart' order_item.item.slug %}"><i class="fa fa-close"></i></a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                <td colspan='5'>Your cart is empty</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/">Continue Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if object.get_total %}
+                <div class="col-lg-4">
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            {% if object.coupon %}
+                            <li>Coupon<span>-${{ object.coupon.amount }}</span></li>
+                            {% endif %}
+                            <li>Total <span>${{ object.get_total }}</span></li>
+                        </ul>
+                        <a href="/checkout/" class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+{% endblock content %}
+   
