@@ -22,12 +22,10 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_v_m++djdipm*hdza+60k3=!o84k&uz=zk_!$--s2!e*d6)$xm'
 
-STRIPE_SECRET_KEY='sk_test_51HYy3CH2GywRe0mGVcrjKDuc7pnbUUw5XqJMCpcAfGNW5eFJ06HzeZMpLK7N2x6kFRMcH60vYzVi7WUhSkxl85JI00riwBD1Zo'
+STRIPE_SECRET_KEY='YOUR SECRET KEY HERE'
 
-STRIPE_PUBLIC_KEY='pk_test_51HYy3CH2GywRe0mGQrPEMFGVs0pKNaJoCh5TbqQjgTWbs38cNmcU5D0km6SXZyAs69r6lxF21XLW8c8mP7dPwWF5006CXigFO9'
+STRIPE_PUBLIC_KEY='PUBLIC KEY'
 
-# STRIPE_PUBLIC_KEY = config('pk_test_51HYy3CH2GywRe0mGQrPEMFGVs0pKNaJoCh5TbqQjgTWbs38cNmcU5D0km6SXZyAs69r6lxF21XLW8c8mP7dPwWF5006CXigFO9')
-# STRIPE_SECRET_KEY = config('sk_test_51HYy3CH2GywRe0mGVcrjKDuc7pnbUUw5XqJMCpcAfGNW5eFJ06HzeZMpLK7N2x6kFRMcH60vYzVi7WUhSkxl85JI00riwBD1Zo')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
