@@ -1,7 +1,4 @@
-# shopping-site-clone
+# Ecommerce Site Clone
 
-Shopping site clone using django. 
-
-DO NOT USE THE FRONT END AS IT IS TO AVOID COPYRIGHT INFRINGEMENT.
-
+![image](https://i.imgur.com/NdLwtah.png)
 The payment module needs a bit more work. Its incomplete. 
